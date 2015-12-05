@@ -1,0 +1,143 @@
+
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>social web final</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="scripts/lib/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+    <script src="scripts/lib/rivets/rivets.bundled.min.js"></script>
+
+  </head>
+  <body id="application">
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="container">
+      <div class="logo-bar">
+          <img src="yn_logo.svg">
+          <h1>YupNope</h1>
+      </div>
+      <header>
+        <div class="buttonSet" rv-hide="user">
+          <button rv-hide="views.signIn" rv-on-click="updateView" data-view="signIn">Sign In</button>
+          <button rv-show="views.signIn" rv-on-click="updateView" data-view="answer">Back</button>
+          <button rv-hide="views.register" rv-on-click="updateView" data-view="register">Register</button>
+          <button rv-show="views.register" rv-on-click="updateView" data-view="answer">Back</button>
+        </div>
+        <div class="buttonSet" rv-show="user">
+          <button rv-hide="views.menu" rv-on-click="updateView" data-view="menu">Questions / Sign Out</button>
+          <button rv-show="views.menu" rv-on-click="updateView" data-view="answer">Back</button>
+          <button rv-hide="views.ask" rv-on-click="updateView" data-view="ask">Ask a Question</button>
+          <button rv-show="views.ask" rv-on-click="updateView" data-view="answer">Back</button>
+
+        </div>
+      </header>
+      <main id="main">
+        <div class="active-question" rv-show="views.answer">
+          <div rv-hide="allDone">
+            <div class="question">
+              <div class="question-image">
+                <img rv-src="question.file" alt="">
+              </div>
+              <p class="question-text" rv-text="question.question"></p>
+            </div>
+            <form class="yesno" action="">
+              <button class="yesno-btn yes" type="button" rv-on-click="yes">YUP</button>
+              <button class="yesno-btn no" type="button" rv-on-click="no">NOPE</button>
+            </form>
+          </div>
+          <div class="all-done" rv-show="allDone">
+            <p>Wow you've answered all the questions! Come back later to answer some more!</p>
+            <img src="yn_logo.svg">
+          </div>
+        </div>
+        <div class="register-block" rv-show="views.register">
+          <h2>Register</h2>
+          <form class="register" action="">
+            <label for="formRegisterEmail">Email:</label>
+            <input id="formRegisterEmail" type="text"></input>
+            <label for="formRegisterPassword">Password:</label>
+            <input id="formRegisterPassword" type="password"></input>
+            <button type="button" id="formRegisterSubmit" rv-on-click="register">Register</button>
+          </form>
+        </div>
+        <div class="sign-in-block" rv-show="views.signIn">
+          <h2>Sign In</h2>
+          <form class="signIn" action="">
+            <label for="formSignInEmail">Email:</label>
+            <input id="formSignInEmail" type="text" autocapitalize="off"
+                autocorrect="off"></input>
+            <label for="formSignInPassword">Password:</label>
+            <input id="formSignInPassword" type="password"></input>
+            <button type="button" id="formSignInSubmit" rv-on-click="signIn">Sign In</button>
+          </form>
+        </div>
+        <div class="upload-block" rv-show="views.ask">
+          <form class="askQuestion" action="">
+            <label for="formAskQuestionImage"><h2>Image</h2></label>
+            <input id="formAskQuestionImage" type="file"></input>
+            <label for="formAskQuestionQuestion"><h2>Question</h2></label>
+            <input id="formAskQuestionQuestion" type="text"></input>
+            <!-- <label for="formAskQuestionPoints">Points</label> -->
+            <!-- <input id="formAskQuestionPoints" type="number"></input> -->
+            <button type="button" id="formAskQuestionSubmit" rv-on-click="ask">Ask it</button>
+          </form>
+        </div>
+        <div class="upload-block" rv-show="views.menu">
+          <ul>
+            <li class="sign-out" rv-on-click="signOut">Sign Out</li>
+            <li><h2>My Questions</h2>
+              <ul>
+                <li rv-each-question="myQuestions">
+                  <img rv-src="question.file" alt="">
+                  <h2>
+                    {question.question} </h2>
+                    <p>Yup: {question.yes}</p>
+                    <p>Nope: {question.no}</p>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <footer></footer>
+    </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/lib/parse/parse.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
