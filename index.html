@@ -60,7 +60,7 @@
         <div class="buttonSet" rv-hide="user">
           <button rv-hide="views.signIn" rv-on-click="updateView" data-view="signIn">Sign In</button>
           <button rv-show="views.signIn" rv-on-click="updateView" data-view="answer">Back</button>
-          <button rv-hide="views.register" rv-on-click="updateView" data-view="register">Register</button>
+          <button rv-hide="views.register" rv-on-click="updateView" data-view="register">Ask Your Own!</button>
           <button rv-show="views.register" rv-on-click="updateView" data-view="answer">Back</button>
         </div>
         <div class="buttonSet" rv-show="user">
@@ -86,18 +86,19 @@
             </form>
           </div>
           <div class="all-done" rv-show="allDone">
-            <p>Wow you've answered all the questions! Register above to add one of your own or come back later to answer some more!</p>
+            <p>Wow you've answered all the questions! Sign up above to add one of your own or come back later to answer some more!</p>
             <img src="yn_logo.svg">
           </div>
         </div>
         <div class="register-block" rv-show="views.register">
-          <h2>Register</h2>
+          <h2>Ask Your Own Question!</h2>
+          <h3>Sign up to track the answers</h3>
           <form class="register" action="">
             <label for="formRegisterEmail">Email:</label>
             <input id="formRegisterEmail" type="text"></input>
             <label for="formRegisterPassword">Password:</label>
             <input id="formRegisterPassword" type="password"></input>
-            <button type="button" id="formRegisterSubmit" rv-on-click="register">Register</button>
+            <button type="button" id="formRegisterSubmit" rv-on-click="register">Sign Up</button>
           </form>
         </div>
         <div class="sign-in-block" rv-show="views.signIn">
